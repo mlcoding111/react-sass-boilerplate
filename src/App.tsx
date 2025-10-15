@@ -36,11 +36,11 @@ declare module "@tanstack/react-router" {
 }
 
 function App() {
-  const routerContextState = useRouterContextState();
+  const routerContextState = useRouterContextState(queryClient);
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} context={routerContextState} />
+        <RouterProvider router={router} context={{ ...routerContextState, queryClient }} />
         <ReactQueryDevtools />
       </QueryClientProvider>
     </>

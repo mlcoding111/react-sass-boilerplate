@@ -35,8 +35,35 @@ function RootComponent() {
   return (
     // Suspense is used to handle the loading of the translations
     <Suspense fallback={<div>Loading...</div>}>
-      <Outlet />
-      <TanStackRouterDevtools />
+      <div className="container mx-auto max-w-xl">
+        <div className="space-x-2">
+          {/* {t("title.part1")} */}
+          <NavLink to="/">Main Page</NavLink>
+          <NavLink to="/about">About Us</NavLink>
+          <NavLink to="/contact-us">Contact Us</NavLink>
+          <NavLink to="/categories">Categories</NavLink>
+          <NavLink to="/search">Search</NavLink>
+          {isClient && <NavLink to="/client">Account</NavLink>}
+          {isAdmin && <NavLink to="/admin">Admin</NavLink>}
+          {isAuthenticated ? (
+            <button
+              onClick={() => {
+                logout();
+                navigate({
+                  to: "/login",
+                  search: { redirectTo: location.href },
+                });
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            <NavLink to="/login">Login</NavLink>
+          )}
+        </div>
+        <Outlet />
+        <TanStackRouterDevtools />
+      </div>
     </Suspense>
   );
 }
