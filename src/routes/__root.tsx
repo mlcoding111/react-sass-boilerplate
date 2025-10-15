@@ -37,6 +37,7 @@ function RootComponent() {
   const location = useLocation();
 
   return (
+    // Suspense is used to handle the loading of the translations
     <Suspense fallback={<div>Loading...</div>}>
       <div className="container mx-auto max-w-xl">
         <div className="space-x-2">

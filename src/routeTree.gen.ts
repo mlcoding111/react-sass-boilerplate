@@ -22,13 +22,11 @@ import { Route as publicCategoriesRouteRouteImport } from './routes/(public)/cat
 import { Route as ContactUsCountryCityRouteImport } from './routes/contact-us.$country.$city'
 import { Route as AuthAdminReportsRouteImport } from './routes/_auth/admin/reports'
 import { Route as AuthChar123LocaleChar125BlogRouteRouteImport } from './routes/_auth/{-$locale}/blog/route'
-import { Route as AuthAdminCategoriesRouteRouteImport } from './routes/_auth/admin/categories/route'
 import { Route as publicCategoriesCategoryIdRouteRouteImport } from './routes/(public)/categories/$categoryId/route'
 import { Route as AuthAdminCategoriesCreateRouteImport } from './routes/_auth/admin/categories_.create'
 import { Route as AuthChar123LocaleChar125BlogTopicIdRouteRouteImport } from './routes/_auth/{-$locale}/blog/$topicId/route'
 import { Route as publicCategoriesCategoryIdSubcategoryIdRouteRouteImport } from './routes/(public)/categories/$categoryId/$subcategoryId/route'
 import { Route as AuthClientFilesSplatIndexRouteImport } from './routes/_auth/client/files/$/index'
-import { Route as AuthAdminCategoriesCategoryIdIndexRouteImport } from './routes/_auth/admin/categories/$categoryId/index'
 import { Route as AuthChar123LocaleChar125BlogTopicIdPostIdRouteRouteImport } from './routes/_auth/{-$locale}/blog/$topicId/$postId/route'
 import { Route as publicCategoriesCategoryIdSubcategoryIdProductIdRouteRouteImport } from './routes/(public)/categories/$categoryId/$subcategoryId/$productId/route'
 
@@ -97,12 +95,6 @@ const AuthChar123LocaleChar125BlogRouteRoute =
     path: '/{-$locale}/blog',
     getParentRoute: () => AuthRouteRoute,
   } as any)
-const AuthAdminCategoriesRouteRoute =
-  AuthAdminCategoriesRouteRouteImport.update({
-    id: '/categories',
-    path: '/categories',
-    getParentRoute: () => AuthAdminRouteRoute,
-  } as any)
 const publicCategoriesCategoryIdRouteRoute =
   publicCategoriesCategoryIdRouteRouteImport.update({
     id: '/$categoryId',
@@ -133,12 +125,6 @@ const AuthClientFilesSplatIndexRoute =
     path: '/files/$/',
     getParentRoute: () => AuthClientRouteRoute,
   } as any)
-const AuthAdminCategoriesCategoryIdIndexRoute =
-  AuthAdminCategoriesCategoryIdIndexRouteImport.update({
-    id: '/$categoryId/',
-    path: '/$categoryId/',
-    getParentRoute: () => AuthAdminCategoriesRouteRoute,
-  } as any)
 const AuthChar123LocaleChar125BlogTopicIdPostIdRouteRoute =
   AuthChar123LocaleChar125BlogTopicIdPostIdRouteRouteImport.update({
     id: '/$postId',
@@ -163,7 +149,6 @@ export interface FileRoutesByFullPath {
   '/client': typeof AuthClientRouteRouteWithChildren
   '/contact-us/$country': typeof ContactUsCountryRouteWithChildren
   '/categories/$categoryId': typeof publicCategoriesCategoryIdRouteRouteWithChildren
-  '/admin/categories': typeof AuthAdminCategoriesRouteRouteWithChildren
   '/{-$locale}/blog': typeof AuthChar123LocaleChar125BlogRouteRouteWithChildren
   '/admin/reports': typeof AuthAdminReportsRoute
   '/contact-us/$country/$city': typeof ContactUsCountryCityRoute
@@ -172,7 +157,6 @@ export interface FileRoutesByFullPath {
   '/admin/categories/create': typeof AuthAdminCategoriesCreateRoute
   '/categories/$categoryId/$subcategoryId/$productId': typeof publicCategoriesCategoryIdSubcategoryIdProductIdRouteRoute
   '/{-$locale}/blog/$topicId/$postId': typeof AuthChar123LocaleChar125BlogTopicIdPostIdRouteRoute
-  '/admin/categories/$categoryId': typeof AuthAdminCategoriesCategoryIdIndexRoute
   '/client/files/$': typeof AuthClientFilesSplatIndexRoute
 }
 export interface FileRoutesByTo {
@@ -186,7 +170,6 @@ export interface FileRoutesByTo {
   '/client': typeof AuthClientRouteRouteWithChildren
   '/contact-us/$country': typeof ContactUsCountryRouteWithChildren
   '/categories/$categoryId': typeof publicCategoriesCategoryIdRouteRouteWithChildren
-  '/admin/categories': typeof AuthAdminCategoriesRouteRouteWithChildren
   '/{-$locale}/blog': typeof AuthChar123LocaleChar125BlogRouteRouteWithChildren
   '/admin/reports': typeof AuthAdminReportsRoute
   '/contact-us/$country/$city': typeof ContactUsCountryCityRoute
@@ -195,7 +178,6 @@ export interface FileRoutesByTo {
   '/admin/categories/create': typeof AuthAdminCategoriesCreateRoute
   '/categories/$categoryId/$subcategoryId/$productId': typeof publicCategoriesCategoryIdSubcategoryIdProductIdRouteRoute
   '/{-$locale}/blog/$topicId/$postId': typeof AuthChar123LocaleChar125BlogTopicIdPostIdRouteRoute
-  '/admin/categories/$categoryId': typeof AuthAdminCategoriesCategoryIdIndexRoute
   '/client/files/$': typeof AuthClientFilesSplatIndexRoute
 }
 export interface FileRoutesById {
@@ -211,7 +193,6 @@ export interface FileRoutesById {
   '/_auth/client': typeof AuthClientRouteRouteWithChildren
   '/contact-us/$country': typeof ContactUsCountryRouteWithChildren
   '/(public)/categories/$categoryId': typeof publicCategoriesCategoryIdRouteRouteWithChildren
-  '/_auth/admin/categories': typeof AuthAdminCategoriesRouteRouteWithChildren
   '/_auth/{-$locale}/blog': typeof AuthChar123LocaleChar125BlogRouteRouteWithChildren
   '/_auth/admin/reports': typeof AuthAdminReportsRoute
   '/contact-us/$country/$city': typeof ContactUsCountryCityRoute
@@ -220,7 +201,6 @@ export interface FileRoutesById {
   '/_auth/admin/categories_/create': typeof AuthAdminCategoriesCreateRoute
   '/(public)/categories/$categoryId/$subcategoryId/$productId': typeof publicCategoriesCategoryIdSubcategoryIdProductIdRouteRoute
   '/_auth/{-$locale}/blog/$topicId/$postId': typeof AuthChar123LocaleChar125BlogTopicIdPostIdRouteRoute
-  '/_auth/admin/categories/$categoryId/': typeof AuthAdminCategoriesCategoryIdIndexRoute
   '/_auth/client/files/$/': typeof AuthClientFilesSplatIndexRoute
 }
 export interface FileRouteTypes {
@@ -236,7 +216,6 @@ export interface FileRouteTypes {
     | '/client'
     | '/contact-us/$country'
     | '/categories/$categoryId'
-    | '/admin/categories'
     | '/{-$locale}/blog'
     | '/admin/reports'
     | '/contact-us/$country/$city'
@@ -245,7 +224,6 @@ export interface FileRouteTypes {
     | '/admin/categories/create'
     | '/categories/$categoryId/$subcategoryId/$productId'
     | '/{-$locale}/blog/$topicId/$postId'
-    | '/admin/categories/$categoryId'
     | '/client/files/$'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -259,7 +237,6 @@ export interface FileRouteTypes {
     | '/client'
     | '/contact-us/$country'
     | '/categories/$categoryId'
-    | '/admin/categories'
     | '/{-$locale}/blog'
     | '/admin/reports'
     | '/contact-us/$country/$city'
@@ -268,7 +245,6 @@ export interface FileRouteTypes {
     | '/admin/categories/create'
     | '/categories/$categoryId/$subcategoryId/$productId'
     | '/{-$locale}/blog/$topicId/$postId'
-    | '/admin/categories/$categoryId'
     | '/client/files/$'
   id:
     | '__root__'
@@ -283,7 +259,6 @@ export interface FileRouteTypes {
     | '/_auth/client'
     | '/contact-us/$country'
     | '/(public)/categories/$categoryId'
-    | '/_auth/admin/categories'
     | '/_auth/{-$locale}/blog'
     | '/_auth/admin/reports'
     | '/contact-us/$country/$city'
@@ -292,7 +267,6 @@ export interface FileRouteTypes {
     | '/_auth/admin/categories_/create'
     | '/(public)/categories/$categoryId/$subcategoryId/$productId'
     | '/_auth/{-$locale}/blog/$topicId/$postId'
-    | '/_auth/admin/categories/$categoryId/'
     | '/_auth/client/files/$/'
   fileRoutesById: FileRoutesById
 }
@@ -399,13 +373,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthChar123LocaleChar125BlogRouteRouteImport
       parentRoute: typeof AuthRouteRoute
     }
-    '/_auth/admin/categories': {
-      id: '/_auth/admin/categories'
-      path: '/categories'
-      fullPath: '/admin/categories'
-      preLoaderRoute: typeof AuthAdminCategoriesRouteRouteImport
-      parentRoute: typeof AuthAdminRouteRoute
-    }
     '/(public)/categories/$categoryId': {
       id: '/(public)/categories/$categoryId'
       path: '/$categoryId'
@@ -441,13 +408,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthClientFilesSplatIndexRouteImport
       parentRoute: typeof AuthClientRouteRoute
     }
-    '/_auth/admin/categories/$categoryId/': {
-      id: '/_auth/admin/categories/$categoryId/'
-      path: '/$categoryId'
-      fullPath: '/admin/categories/$categoryId'
-      preLoaderRoute: typeof AuthAdminCategoriesCategoryIdIndexRouteImport
-      parentRoute: typeof AuthAdminCategoriesRouteRoute
-    }
     '/_auth/{-$locale}/blog/$topicId/$postId': {
       id: '/_auth/{-$locale}/blog/$topicId/$postId'
       path: '/$postId'
@@ -465,29 +425,12 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface AuthAdminCategoriesRouteRouteChildren {
-  AuthAdminCategoriesCategoryIdIndexRoute: typeof AuthAdminCategoriesCategoryIdIndexRoute
-}
-
-const AuthAdminCategoriesRouteRouteChildren: AuthAdminCategoriesRouteRouteChildren =
-  {
-    AuthAdminCategoriesCategoryIdIndexRoute:
-      AuthAdminCategoriesCategoryIdIndexRoute,
-  }
-
-const AuthAdminCategoriesRouteRouteWithChildren =
-  AuthAdminCategoriesRouteRoute._addFileChildren(
-    AuthAdminCategoriesRouteRouteChildren,
-  )
-
 interface AuthAdminRouteRouteChildren {
-  AuthAdminCategoriesRouteRoute: typeof AuthAdminCategoriesRouteRouteWithChildren
   AuthAdminReportsRoute: typeof AuthAdminReportsRoute
   AuthAdminCategoriesCreateRoute: typeof AuthAdminCategoriesCreateRoute
 }
 
 const AuthAdminRouteRouteChildren: AuthAdminRouteRouteChildren = {
-  AuthAdminCategoriesRouteRoute: AuthAdminCategoriesRouteRouteWithChildren,
   AuthAdminReportsRoute: AuthAdminReportsRoute,
   AuthAdminCategoriesCreateRoute: AuthAdminCategoriesCreateRoute,
 }
