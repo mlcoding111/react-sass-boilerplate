@@ -44,7 +44,7 @@ function App() {
         <ReactQueryDevtools />
       </QueryClientProvider>
     </>
-  ); // Modified
+  );
 }
 
 export default App;
