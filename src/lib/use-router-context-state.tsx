@@ -31,6 +31,7 @@ export function useRouterContextState(_queryClient: QueryClient): Omit<RouterCon
 
   const isAdmin = role === "admin";
   const isClient = role === "client";
+  console.log("role", role);
   const isAuthenticated = !!role;
 
   return {

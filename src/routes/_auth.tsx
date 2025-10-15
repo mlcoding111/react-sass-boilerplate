@@ -1,8 +1,13 @@
-import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { GalleryVerticalEnd } from "lucide-react";
 
 export const Route = createFileRoute("/_auth")({
   component: RouteComponent,
+  beforeLoad: async ({ context }) => {
+    if (context.isAuthenticated) {
+      throw redirect({ to: "/dashboard" });
+    }
+  },
 });
 
 function RouteComponent() {
