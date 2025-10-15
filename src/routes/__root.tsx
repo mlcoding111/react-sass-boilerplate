@@ -20,16 +20,12 @@ export type RouterContext = {
   isAuthenticated: boolean;
 };
 
-// export const Route = createRootRoute({
-//   component: RootComponent,
-// });
-
 export const Route = createRootRouteWithContext<RouterContext>()({
   component: RootComponent,
 });
 
 function RootComponent() {
-  const { t } = useTranslation("translations");
+  // const { t } = useTranslation("translations");
   const { logout, isAuthenticated, isAdmin, isClient } =
     Route.useRouteContext();
 
@@ -41,7 +37,7 @@ function RootComponent() {
     <Suspense fallback={<div>Loading...</div>}>
       <div className="container mx-auto max-w-xl">
         <div className="space-x-2">
-          {t("title.part1")}
+          {/* {t("title.part1")} */}
           <NavLink to="/">Main Page</NavLink>
           <NavLink to="/about">About Us</NavLink>
           <NavLink to="/contact-us">Contact Us</NavLink>

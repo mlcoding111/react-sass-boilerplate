@@ -22,9 +22,6 @@ import { Route as publicCategoriesRouteRouteImport } from './routes/(public)/cat
 import { Route as publicAuthRouteRouteImport } from './routes/(public)/auth/route'
 import { Route as ContactUsCountryCityRouteImport } from './routes/contact-us.$country.$city'
 import { Route as AuthAdminReportsRouteImport } from './routes/_auth/admin/reports'
-import { Route as publicAuthRegisterRouteImport } from './routes/(public)/auth/register'
-import { Route as publicAuthLoginRouteImport } from './routes/(public)/auth/login'
-import { Route as publicAuth_layoutRouteImport } from './routes/(public)/auth/__layout'
 import { Route as AuthChar123LocaleChar125BlogRouteRouteImport } from './routes/_auth/{-$locale}/blog/route'
 import { Route as publicCategoriesCategoryIdRouteRouteImport } from './routes/(public)/categories/$categoryId/route'
 import { Route as AuthAdminCategoriesCreateRouteImport } from './routes/_auth/admin/categories_.create'
@@ -98,20 +95,6 @@ const AuthAdminReportsRoute = AuthAdminReportsRouteImport.update({
   path: '/reports',
   getParentRoute: () => AuthAdminRouteRoute,
 } as any)
-const publicAuthRegisterRoute = publicAuthRegisterRouteImport.update({
-  id: '/register',
-  path: '/register',
-  getParentRoute: () => publicAuthRouteRoute,
-} as any)
-const publicAuthLoginRoute = publicAuthLoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => publicAuthRouteRoute,
-} as any)
-const publicAuth_layoutRoute = publicAuth_layoutRouteImport.update({
-  id: '/__layout',
-  getParentRoute: () => publicAuthRouteRoute,
-} as any)
 const AuthChar123LocaleChar125BlogRouteRoute =
   AuthChar123LocaleChar125BlogRouteRouteImport.update({
     id: '/{-$locale}/blog',
@@ -166,7 +149,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact-us': typeof ContactUsRouteWithChildren
   '/login': typeof LoginRoute
-  '/auth': typeof publicAuth_layoutRoute
+  '/auth': typeof publicAuthRouteRoute
   '/categories': typeof publicCategoriesRouteRouteWithChildren
   '/search': typeof publicSearchRouteRoute
   '/admin': typeof AuthAdminRouteRouteWithChildren
@@ -174,8 +157,6 @@ export interface FileRoutesByFullPath {
   '/contact-us/$country': typeof ContactUsCountryRouteWithChildren
   '/categories/$categoryId': typeof publicCategoriesCategoryIdRouteRouteWithChildren
   '/{-$locale}/blog': typeof AuthChar123LocaleChar125BlogRouteRouteWithChildren
-  '/auth/login': typeof publicAuthLoginRoute
-  '/auth/register': typeof publicAuthRegisterRoute
   '/admin/reports': typeof AuthAdminReportsRoute
   '/contact-us/$country/$city': typeof ContactUsCountryCityRoute
   '/categories/$categoryId/$subcategoryId': typeof publicCategoriesCategoryIdSubcategoryIdRouteRouteWithChildren
@@ -190,7 +171,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact-us': typeof ContactUsRouteWithChildren
   '/login': typeof LoginRoute
-  '/auth': typeof publicAuth_layoutRoute
+  '/auth': typeof publicAuthRouteRoute
   '/categories': typeof publicCategoriesRouteRouteWithChildren
   '/search': typeof publicSearchRouteRoute
   '/admin': typeof AuthAdminRouteRouteWithChildren
@@ -198,8 +179,6 @@ export interface FileRoutesByTo {
   '/contact-us/$country': typeof ContactUsCountryRouteWithChildren
   '/categories/$categoryId': typeof publicCategoriesCategoryIdRouteRouteWithChildren
   '/{-$locale}/blog': typeof AuthChar123LocaleChar125BlogRouteRouteWithChildren
-  '/auth/login': typeof publicAuthLoginRoute
-  '/auth/register': typeof publicAuthRegisterRoute
   '/admin/reports': typeof AuthAdminReportsRoute
   '/contact-us/$country/$city': typeof ContactUsCountryCityRoute
   '/categories/$categoryId/$subcategoryId': typeof publicCategoriesCategoryIdSubcategoryIdRouteRouteWithChildren
@@ -216,7 +195,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact-us': typeof ContactUsRouteWithChildren
   '/login': typeof LoginRoute
-  '/(public)/auth': typeof publicAuthRouteRouteWithChildren
+  '/(public)/auth': typeof publicAuthRouteRoute
   '/(public)/categories': typeof publicCategoriesRouteRouteWithChildren
   '/(public)/search': typeof publicSearchRouteRoute
   '/_auth/admin': typeof AuthAdminRouteRouteWithChildren
@@ -224,9 +203,6 @@ export interface FileRoutesById {
   '/contact-us/$country': typeof ContactUsCountryRouteWithChildren
   '/(public)/categories/$categoryId': typeof publicCategoriesCategoryIdRouteRouteWithChildren
   '/_auth/{-$locale}/blog': typeof AuthChar123LocaleChar125BlogRouteRouteWithChildren
-  '/(public)/auth/__layout': typeof publicAuth_layoutRoute
-  '/(public)/auth/login': typeof publicAuthLoginRoute
-  '/(public)/auth/register': typeof publicAuthRegisterRoute
   '/_auth/admin/reports': typeof AuthAdminReportsRoute
   '/contact-us/$country/$city': typeof ContactUsCountryCityRoute
   '/(public)/categories/$categoryId/$subcategoryId': typeof publicCategoriesCategoryIdSubcategoryIdRouteRouteWithChildren
@@ -251,8 +227,6 @@ export interface FileRouteTypes {
     | '/contact-us/$country'
     | '/categories/$categoryId'
     | '/{-$locale}/blog'
-    | '/auth/login'
-    | '/auth/register'
     | '/admin/reports'
     | '/contact-us/$country/$city'
     | '/categories/$categoryId/$subcategoryId'
@@ -275,8 +249,6 @@ export interface FileRouteTypes {
     | '/contact-us/$country'
     | '/categories/$categoryId'
     | '/{-$locale}/blog'
-    | '/auth/login'
-    | '/auth/register'
     | '/admin/reports'
     | '/contact-us/$country/$city'
     | '/categories/$categoryId/$subcategoryId'
@@ -300,9 +272,6 @@ export interface FileRouteTypes {
     | '/contact-us/$country'
     | '/(public)/categories/$categoryId'
     | '/_auth/{-$locale}/blog'
-    | '/(public)/auth/__layout'
-    | '/(public)/auth/login'
-    | '/(public)/auth/register'
     | '/_auth/admin/reports'
     | '/contact-us/$country/$city'
     | '/(public)/categories/$categoryId/$subcategoryId'
@@ -319,7 +288,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactUsRoute: typeof ContactUsRouteWithChildren
   LoginRoute: typeof LoginRoute
-  publicAuthRouteRoute: typeof publicAuthRouteRouteWithChildren
+  publicAuthRouteRoute: typeof publicAuthRouteRoute
   publicCategoriesRouteRoute: typeof publicCategoriesRouteRouteWithChildren
   publicSearchRouteRoute: typeof publicSearchRouteRoute
 }
@@ -416,27 +385,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/reports'
       preLoaderRoute: typeof AuthAdminReportsRouteImport
       parentRoute: typeof AuthAdminRouteRoute
-    }
-    '/(public)/auth/register': {
-      id: '/(public)/auth/register'
-      path: '/register'
-      fullPath: '/auth/register'
-      preLoaderRoute: typeof publicAuthRegisterRouteImport
-      parentRoute: typeof publicAuthRouteRoute
-    }
-    '/(public)/auth/login': {
-      id: '/(public)/auth/login'
-      path: '/login'
-      fullPath: '/auth/login'
-      preLoaderRoute: typeof publicAuthLoginRouteImport
-      parentRoute: typeof publicAuthRouteRoute
-    }
-    '/(public)/auth/__layout': {
-      id: '/(public)/auth/__layout'
-      path: ''
-      fullPath: '/auth'
-      preLoaderRoute: typeof publicAuth_layoutRouteImport
-      parentRoute: typeof publicAuthRouteRoute
     }
     '/_auth/{-$locale}/blog': {
       id: '/_auth/{-$locale}/blog'
@@ -593,22 +541,6 @@ const ContactUsRouteWithChildren = ContactUsRoute._addFileChildren(
   ContactUsRouteChildren,
 )
 
-interface publicAuthRouteRouteChildren {
-  publicAuth_layoutRoute: typeof publicAuth_layoutRoute
-  publicAuthLoginRoute: typeof publicAuthLoginRoute
-  publicAuthRegisterRoute: typeof publicAuthRegisterRoute
-}
-
-const publicAuthRouteRouteChildren: publicAuthRouteRouteChildren = {
-  publicAuth_layoutRoute: publicAuth_layoutRoute,
-  publicAuthLoginRoute: publicAuthLoginRoute,
-  publicAuthRegisterRoute: publicAuthRegisterRoute,
-}
-
-const publicAuthRouteRouteWithChildren = publicAuthRouteRoute._addFileChildren(
-  publicAuthRouteRouteChildren,
-)
-
 interface publicCategoriesCategoryIdSubcategoryIdRouteRouteChildren {
   publicCategoriesCategoryIdSubcategoryIdProductIdRouteRoute: typeof publicCategoriesCategoryIdSubcategoryIdProductIdRouteRoute
 }
@@ -659,7 +591,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactUsRoute: ContactUsRouteWithChildren,
   LoginRoute: LoginRoute,
-  publicAuthRouteRoute: publicAuthRouteRouteWithChildren,
+  publicAuthRouteRoute: publicAuthRouteRoute,
   publicCategoriesRouteRoute: publicCategoriesRouteRouteWithChildren,
   publicSearchRouteRoute: publicSearchRouteRoute,
 }
